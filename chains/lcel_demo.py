@@ -18,6 +18,8 @@ month=st.text_input("enter month")
 language=st.text_input("enter language")
 budget=st.selectbox("enter budget",["Low","Medium","High"])
 
+chain=prompt_template| llm
+
 if city and month and language and budget:
-    response=llm.invoke(prompt_template.format(city=city,month=month,language=language,budget=budget))
+    response=chain.invoke({"city":city,"month":month,"language":language,"budget":budget})
     st.write(response.content)
